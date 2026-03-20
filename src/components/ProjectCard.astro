@@ -1,0 +1,27 @@
+---
+interface Props {
+  titleEn: string;
+  titleJa: string;
+  descriptionEn: string;
+  descriptionJa: string;
+  href: string;
+}
+const { titleEn, titleJa, descriptionEn, descriptionJa, href } = Astro.props;
+---
+<a
+  href={href}
+  class="glass-card group block p-5 rounded-xl transition-all duration-200"
+  data-en-title={titleEn}
+  data-ja-title={titleJa}
+  data-en-desc={descriptionEn}
+  data-ja-desc={descriptionJa}
+>
+  <h3 class="card-title font-medium mb-1.5">{titleEn}</h3>
+  <p class="card-desc text-sm text-gray-600 dark:text-gray-400">{descriptionEn}</p>
+  <span class="mt-3 inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 group-hover:opacity-80 transition-opacity">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17L17 7"/><path d="M7 7h10v10"/>
+    </svg>
+    View
+  </span>
+</a>

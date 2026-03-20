@@ -1,0 +1,48 @@
+<button
+  id="lang-toggle"
+  aria-label="Toggle language"
+  class="text-xs font-medium px-2 py-1 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:opacity-70 transition-opacity tracking-wide"
+>
+  EN
+</button>
+
+<script>
+  const btn = document.getElementById('lang-toggle') as HTMLButtonElement;
+
+  // Apply language to all translatable elements
+  function applyLang(lang: 'en' | 'ja') {
+    btn.textContent = lang === 'en' ? 'JA' : 'EN';
+
+    // data-en / data-ja on generic elements (text content)
+    document.querySelectorAll<HTMLElement>('[data-en][data-ja]').forEach((el) => {
+      el.textContent = lang === 'en' ? (el.dataset.en ?? '') : (el.dataset.ja ?? '');
+    });
+
+    // ProjectCard titles and descriptions
+    document.querySelectorAll<HTMLElement>('[data-en-title]').forEach((card) => {
+      const titleEl = card.querySelector('.card-title');
+      const descEl = card.querySelector('.card-desc');
+      if (titleEl) titleEl.textContent = lang === 'en' ? (card.dataset.enTitle ?? '') : (card.dataset.jaTitle ?? '');
+      if (descEl) descEl.textContent = lang === 'en' ? (card.dataset.enDesc ?? '') : (card.dataset.jaDesc ?? '');
+    });
+
+    // Bio paragraph and Experience role/org elements with data-en-text attributes
+    document.querySelectorAll<HTMLElement>('[data-en-text]').forEach((el) => {
+      const text = lang === 'en' ? (el.dataset.enText ?? '') : (el.dataset.jaText ?? '');
+      el.textContent = text;
+    });
+
+    localStorage.setItem('lang', lang);
+    document.documentElement.setAttribute('data-lang', lang);
+  }
+
+  // Initialize
+  const saved = localStorage.getItem('lang') as 'en' | 'ja' | null;
+  const initial: 'en' | 'ja' = saved ?? 'en';
+  applyLang(initial);
+
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-lang') as 'en' | 'ja';
+    applyLang(current === 'en' ? 'ja' : 'en');
+  });
+</script>

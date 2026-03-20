@@ -1,0 +1,65 @@
+---
+const experiences = [
+  {
+    period: '2025.08 – 2025.09',
+    orgEn: 'Amazon Japan',
+    orgJa: 'Amazon Japan',
+    roleEn: 'Software Engineer Intern',
+    roleJa: 'ソフトウェアエンジニアインターン',
+  },
+  {
+    period: '2024.12 – 2025.07',
+    orgEn: 'DynaMeet Inc.',
+    orgJa: 'DynaMeet株式会社',
+    roleEn: 'Software Engineer Intern',
+    roleJa: 'ソフトウェアエンジニアインターン',
+  },
+  {
+    period: '2025.06',
+    orgEn: 'M3, Inc.',
+    orgJa: 'エムスリー株式会社',
+    roleEn: 'Software Engineer Intern',
+    roleJa: 'ソフトウェアエンジニアインターン',
+  },
+  {
+    period: '2024.11 – 2024.12',
+    orgEn: 'Yappli, Inc.',
+    orgJa: '株式会社ヤプリ',
+    roleEn: 'Software Engineer Intern',
+    roleJa: 'ソフトウェアエンジニアインターン',
+  },
+  {
+    period: '2023.10 – 2024.10',
+    orgEn: 'Fiah',
+    orgJa: 'Fiah株式会社',
+    roleEn: 'Software Engineer Intern',
+    roleJa: 'ソフトウェアエンジニアインターン',
+  },
+];
+---
+<section id="experience" class="mb-16">
+  <h2
+    class="text-lg font-semibold mb-6"
+    data-en="Experience"
+    data-ja="経歴"
+  >Experience</h2>
+  <div class="space-y-3">
+    {experiences.map(({ period, orgEn, orgJa, roleEn, roleJa }) => (
+      <div class="flex items-baseline gap-4">
+        <span class="text-xs text-gray-400 dark:text-gray-500 w-36 shrink-0 tabular-nums">{period}</span>
+        <div>
+          <span
+            class="text-sm font-medium exp-org"
+            data-en-text={orgEn}
+            data-ja-text={orgJa}
+          >{orgEn}</span><span class="text-sm text-gray-500 dark:text-gray-400">,</span>
+          <span
+            class="text-sm text-gray-500 dark:text-gray-400 exp-role"
+            data-en-text={roleEn}
+            data-ja-text={roleJa}
+          >{roleEn}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

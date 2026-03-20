@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Bio from '../components/Bio.astro';
+import Experience from '../components/Experience.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    titleEn: 'AI Kanji-kun',
+    titleJa: 'AIカンジ君',
+    descriptionEn: 'AI-powered event management & expense splitting web app',
+    descriptionJa: 'AIを活用したイベント管理・割り勘Webアプリ',
+    href: '#',
+  },
+];
+---
+<Base title="Ryotaro Shimada – Software Engineer" description="Ryotaro Shimada's personal portfolio site.">
+  <Bio />
+  <Experience />
+  <section id="projects" class="mb-16">
+    <h2 class="text-lg font-semibold mb-6" data-en="Projects" data-ja="プロジェクト">Projects</h2>
+    <div class="grid gap-4">
+      {projects.map((project) => (
+        <ProjectCard
+          titleEn={project.titleEn}
+          titleJa={project.titleJa}
+          descriptionEn={project.descriptionEn}
+          descriptionJa={project.descriptionJa}
+          href={project.href}
+        />
+      ))}
+    </div>
+  </section>
+</Base>
