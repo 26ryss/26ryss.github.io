@@ -1,0 +1,23 @@
+---
+const education = [
+  {
+    period: '2020.04 – 2026.03',
+    org: 'The University of Tokyo',
+    role: 'B.S. in Electrical and Electronic Engineering',
+  },
+];
+---
+<section id="education" class="mb-16">
+  <h2 class="text-lg font-semibold mb-6">Education</h2>
+  <div class="space-y-3">
+    {education.map(({ period, org, role }) => (
+      <div class="flex items-baseline gap-4">
+        <span class="text-xs text-gray-400 dark:text-gray-500 w-36 shrink-0 tabular-nums">{period}</span>
+        <div>
+          <span class="text-sm font-medium">{org}</span><span class="text-sm text-gray-500 dark:text-gray-400">,</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400">{role}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

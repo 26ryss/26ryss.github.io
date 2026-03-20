@@ -2,21 +2,27 @@
 import Base from '../layouts/Base.astro';
 import Bio from '../components/Bio.astro';
 import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = [
   {
-    titleEn: 'AI Kanji-kun',
-    titleJa: 'AIカンジ君',
-    descriptionEn: 'AI-powered event management & expense splitting web app',
-    descriptionJa: 'AIを活用したイベント管理・割り勘Webアプリ',
-    href: '#',
+    titleEn: 'RLab',
+    titleJa: 'RLab',
+    descriptionEn: 'Developing apps for everyday kawaii life',
+    descriptionJa: 'Kawaii lifestyleを実現するアプリを開発',
+    href: 'https://rlab-dev.netlify.app/',
+    icons: [
+      { src: '/birthday-icon.png', alt: 'Birthday app icon', label: 'おたんじょうび', appStoreHref: 'https://apps.apple.com/jp/app/%E3%81%8A%E3%81%9F%E3%82%93%E3%81%98%E3%82%87%E3%81%86%E3%81%B3-%E8%AA%95%E7%94%9F%E6%97%A5%E3%81%AE%E9%80%9A%E7%9F%A5%E3%81%A8%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC%E7%AE%A1%E7%90%86/id6742705376' },
+      { src: '/kakeibo-icon.png', alt: 'Kakeibo app icon', label: 'かけいぼ' },
+    ],
   },
 ];
 ---
 <Base title="Ryotaro Shimada – Software Engineer" description="Ryotaro Shimada's personal portfolio site.">
   <Bio />
   <Experience />
+  <Education />
   <section id="projects" class="mb-16">
     <h2 class="text-lg font-semibold mb-6" data-en="Projects" data-ja="プロジェクト">Projects</h2>
     <div class="grid gap-4">
@@ -27,6 +33,7 @@ const projects = [
           descriptionEn={project.descriptionEn}
           descriptionJa={project.descriptionJa}
           href={project.href}
+          icons={project.icons}
         />
       ))}
     </div>

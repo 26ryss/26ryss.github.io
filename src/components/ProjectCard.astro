@@ -5,12 +5,12 @@ interface Props {
   descriptionEn: string;
   descriptionJa: string;
   href: string;
+  icons?: { src: string; alt: string; label?: string; appStoreHref?: string }[];
 }
-const { titleEn, titleJa, descriptionEn, descriptionJa, href } = Astro.props;
+const { titleEn, titleJa, descriptionEn, descriptionJa, href, icons } = Astro.props;
 ---
-<a
-  href={href}
-  class="glass-card group block p-5 rounded-xl transition-all duration-200"
+<div
+  class="glass-card p-5 rounded-xl"
   data-en-title={titleEn}
   data-ja-title={titleJa}
   data-en-desc={descriptionEn}
@@ -18,10 +18,31 @@ const { titleEn, titleJa, descriptionEn, descriptionJa, href } = Astro.props;
 >
   <h3 class="card-title font-medium mb-1.5">{titleEn}</h3>
   <p class="card-desc text-sm text-gray-600 dark:text-gray-400">{descriptionEn}</p>
-  <span class="mt-3 inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 group-hover:opacity-80 transition-opacity">
+  {icons && icons.length > 0 && (
+    <div class="flex items-start gap-4 mt-3">
+      {icons.map(({ src, alt, label, appStoreHref }) => (
+        <div class="flex flex-col items-center gap-1">
+          {appStoreHref ? (
+            <a href={appStoreHref} target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">
+              <img src={src} alt={alt} class="w-14 h-14 rounded-2xl shadow-sm" />
+            </a>
+          ) : (
+            <img src={src} alt={alt} class="w-14 h-14 rounded-2xl shadow-sm" />
+          )}
+          {label && <span class="text-[8px] text-gray-500 dark:text-gray-400">{label}</span>}
+        </div>
+      ))}
+    </div>
+  )}
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-3 inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 hover:opacity-80 transition-opacity"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M7 17L17 7"/><path d="M7 7h10v10"/>
     </svg>
     View
-  </span>
-</a>
+  </a>
+</div>
